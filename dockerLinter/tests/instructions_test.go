@@ -20,47 +20,47 @@ func TestMain(m *testing.M) {
 	os.Exit(exitVal)
 }
 
-//
-//func TestTagExists(t *testing.T) {
-//	t.Parallel()
-//
-//	want := true
-//	got := handlers.EvaluateFromInstruction(validDockerInstructions["FROM"])
-//	if want != got {
-//		t.Error("Expecting a tag, but does not have one.")
-//	}
-//}
-//
-//func TestTagNotExisting(t *testing.T) {
-//	t.Parallel()
-//	want := false
-//	got := handlers.EvaluateFromInstruction(invalidDockerInstructions["FROM"])
-//
-//	if want != got {
-//		t.Error("Not expecting a tag, but have one.")
-//	}
-//}
-//
-//func TestExposeInsideRange(t *testing.T) {
-//	t.Parallel()
-//	want := true
-//	got := handlers.EvaluteExposeInstruction(validDockerInstructions["EXPOSE"])
-//
-//	if want != got {
-//		t.Error("Expecting the port in the Docker file to be in the range of allowed ports, but it's not")
-//	}
-//}
-//
-//func TestExposeOutsideOfRange(t *testing.T) {
-//	t.Parallel()
-//	want := false
-//	got := handlers.EvaluteExposeInstruction(invalidDockerInstructions["EXPOSE"])
-//
-//	if want != got {
-//		t.Error("Expecting the port to not be in the valid ranges, but it's")
-//	}
-//}
-//
+
+func TestTagExists(t *testing.T) {
+	t.Parallel()
+
+	want := true
+	got := handlers.EvaluateFromInstruction(validDockerInstructions["FROM"])
+	if want != got {
+		t.Error("Expecting a tag, but does not have one.")
+	}
+}
+
+func TestTagNotExisting(t *testing.T) {
+	t.Parallel()
+	want := false
+	got := handlers.EvaluateFromInstruction(invalidDockerInstructions["FROM"])
+
+	if want != got {
+		t.Error("Not expecting a tag, but have one.")
+	}
+}
+
+func TestExposeInsideRange(t *testing.T) {
+	t.Parallel()
+	want := true
+	got := handlers.EvaluteExposeInstruction(validDockerInstructions["EXPOSE"])
+
+	if want != got {
+		t.Error("Expecting the port in the Docker file to be in the range of allowed ports, but it's not")
+	}
+}
+
+func TestExposeOutsideOfRange(t *testing.T) {
+	t.Parallel()
+	want := false
+	got := handlers.EvaluteExposeInstruction(invalidDockerInstructions["EXPOSE"])
+
+	if want != got {
+		t.Error("Expecting the port to not be in the valid ranges, but it's")
+	}
+}
+
 func TestCMDInstructionDeclaredJustOnce(t *testing.T) {
 	t.Parallel()
 	want := true
